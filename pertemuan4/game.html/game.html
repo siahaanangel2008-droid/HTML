@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Suit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 { color: #333; }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1> Game Suit </h1>
+    <p>Pilih mode permainan di bawah ini:</p>
+    
+    <button onclick="mainSuit('internasional')">1. Batu, Gunting, Kertas ✊✌️✋</button>
+    <button onclick="mainSuit('tradisional')">2. Gajah, Semut, Manusia 🐘🐜🧑</button>
+    <button onclick="mainSuit('jari')">3. Jempol, Telunjuk, Kelingking 👍☝️🤙</button>
+</div>
+
+<script>
+function mainSuit(mode) {
+    let pilihanUser = "";
+    let pilihanBot = "";
+    let listPilihan = [];
+    
+    
+    if (mode === 'internasional') {
+        listPilihan = ['batu', 'gunting', 'kertas'];
+        pilihanUser = prompt("Masukkan pilihan Anda:\n(batu / gunting / kertas)").toLowerCase();
+    } else if (mode === 'tradisional') {
+        listPilihan = ['gajah', 'semut', 'manusia'];
+        pilihanUser = prompt("Masukkan pilihan Anda:\n(gajah / semut / manusia)").toLowerCase();
+    } else if (mode === 'jari') {
+        listPilihan = ['jempol', 'telunjuk', 'kelingking'];
+        pilihanUser = prompt("Masukkan pilihan Anda:\n(jempol / telunjuk / kelingking)").toLowerCase();
+    }
+
+
+    if (!pilihanUser) return;
+
+    
+    if (!listPilihan.includes(pilihanUser)) {
+        alert("❌ Pilihan  KAU salah LOH! Ketikkanlah dengan petunjuk yang pas.");
+        return;
+    }
+
+    
+    const acak = Math.floor(Math.random() * 3);
+    pilihanBot = listPilihan[acak];
+
+    
+    let hasil = "";
+
+    if (pilihanUser === pilihanBot) {
+        hasil = "SERI! 🤝";
+    } else {
+        
+        if (mode === 'internasional') {
+            if (
+                (pilihanUser === 'batu' && pilihanBot === 'gunting') ||
+                (pilihanUser === 'gunting' && pilihanBot === 'kertas') ||
+                (pilihanUser === 'kertas' && pilihanBot === 'batu')
+            ) {
+                hasil = "CIEEEEEE.......MENANG DIA....! 🎉";
+            } else {
+                hasil = "HAHAHAHAHAHAHAHA.........KALAH DIAAAA....! 😢";
+            }
+        } 
+        else if (mode === 'tradisional') {
+            if (
+                (pilihanUser === 'gajah' && pilihanBot === 'manusia') ||
+                (pilihanUser === 'manusia' && pilihanBot === 'semut') ||
+                (pilihanUser === 'semut' && pilihanBot === 'gajah')
+            ) {
+                hasil = "CIEEEEEE.......MENANG DIA....! 🎉";
+            } else {
+                hasil = "HAHAHAHAHAHAHAHA.........KALAH DIAAAA....! 😢";
+            }
+        } 
+        else if (mode === 'jari') {
+            if (
+                (pilihanUser === 'jempol' && pilihanBot === 'telunjuk') ||
+                (pilihanUser === 'telunjuk' && pilihanBot === 'kelingking') ||
+                (pilihanUser === 'kelingking' && pilihanBot === 'jempol')
+            ) {
+                hasil = "CIEEEEEE.......MENANG DIA....! 🎉";
+            } else {
+                hasil = "HAHAHAHAHAHAHAHA.........KALAH DIAAAA....! 😢";
+            }
+        }
+    }
+
+
+    alert(`Hasil Suit:\n\n👤 Anda: ${pilihanUser.toUpperCase()}\n🤖 Bot: ${pilihanBot.toUpperCase()}\n\nStatus: ${hasil}`);
+}
+</script>
+
+</body>
+</html>
